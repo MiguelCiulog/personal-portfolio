@@ -10,7 +10,6 @@
 </template>
 
 <script>
-// eslint-ignore-next-line
 import anime from 'animejs/lib/anime.es.js';
 
 export default {
@@ -18,33 +17,32 @@ export default {
 	methods: {
 		setApplyTheme() {
 			this.$emit('apply-theme', true);
-		},
+		}
 	},
 	mounted() {
 		const animation = () => {
-			const mutateLoading = anime({
+			anime({
 				targets: '.loading-view',
 				easing: 'easeInOutQuad',
-				duration: 1500,
-				width: '100%',
+				duration: 650,
+				width: '100%'
 			});
 
 			setTimeout(() => {
 				this.setApplyTheme();
-			}, 2000);
+			}, 650);
 		};
-
-		setTimeout(animation, 500);
-	},
+		animation();
+	}
 };
 </script>
 
 <style>
-.loading-container {
-  border-color: var(--text);
-}
+  .loading-container {
+    border-color: var(--text);
+  }
 
-.loading-view {
-  background-color: var(--text-highlight);
-}
+  .loading-view {
+    background-color: var(--text-highlight);
+  }
 </style>

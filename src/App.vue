@@ -9,10 +9,11 @@
       "
       ref="baseContainer"
     >
-      <Navbar
-        @updateWindowSize="setWindowWidth($event)"
-        v-show="isThemeLoaded"
-      />
+      <div class="flex flex-col items-center justify-center pt-8">
+        <h1 class="text-4xl font-bold">Miguel Ciulog</h1>
+        <h3 class="text-lg">Backend Engineer</h3>
+      </div>
+
       <ThreeJS
         v-if="isThemeLoaded && currentRouteName !== 'ngl'"
         :padding-value="paddingValue"
@@ -59,9 +60,8 @@
 
 <script setup>
 import ThreeJS from './components/ThreeJs.vue';
-import Navbar from './components/MainNavbar.vue';
 import 'animate.css';
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted } from 'vue';
 import Themes from './components/MainThemeSelectorComponents/Themes.json';
 import MainLoading from './views/MainLoading.vue';
 import MainSkeletonLoader from './views/MainSkeletonLoader.vue';
@@ -105,7 +105,7 @@ setDefaultTheme();
 
 onMounted(() => {
 	setTimeout(() => {
-		const { classList } = baseContainer.value;
+		classList = baseContainer.value;
 	}, 2500);
 });
 </script>
@@ -130,7 +130,7 @@ export default {
 		setTimeout(() => {
 			this.setDefaultPadding();
 			this.setDefaultWidth();
-			const body = document.body;
+			body = document.body;
 		}, 1000);
 
 		// the animation disables the fix heaader bar actually

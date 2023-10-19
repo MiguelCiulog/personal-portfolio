@@ -3,15 +3,11 @@
     <!-- introduction section -->
     <div class="divCenter">
       <p
-        id="landing_intro"
-        ref="landingIntro"
+        id="text_scroll"
+        ref="textScroll"
         class="lg:text-xl text-md acrlyic w-auto text-center selector"
       ></p>
     </div>
-    <section class="">
-      <h1 class="text-4xl font-bold">Aaron Lyn</h1>
-      <h3 class="text-lg">Professional web developer</h3>
-    </section>
     <section class="pt-2">
       <h2
         class="lg:text-2xl text-lg font-bold underline underline-offset-8 decoration-2"
@@ -20,15 +16,15 @@
       </h2>
       <br />
       <p class="lg:text-lg text-sm text-justify leading-6">
-        &nbsp;&nbsp;&nbsp;&nbsp; Professional junior web developer capable
-        professional looking and user-friendly websites from stratch and writes
-        <strong>performance optimized, reusable and refactorable codes</strong>.
-        Professionally developed 5 web applications with multiple Javascript
-        frameworks.
+        Experienced Software Engineer and Back-End Developer skilled in crafting
+        efficient web solutions with a focus on
+        <strong>enhancing developer experience</strong>, with a strong
+        foundation in <strong>RESTful API development</strong>,
+        <strong>database management</strong>, and simple, yet efficient
+        <strong>DevOps practices</strong>.
       </p>
       <br />
       <p class="lg:text-lg text-sm text-justify leading-6">
-        <!-- &nbsp;&nbsp;&nbsp;&nbsp; -->
         Hungry for knowledge, collaborative individual and possess analytical
         skills. Enjoys problem solving and willing to adapt to changes in the
         industry to stay on top.
@@ -43,10 +39,12 @@
       </h2>
       <br />
       <p class="lg:text-lg text-sm text-justify leading-6">
-        &nbsp;&nbsp;&nbsp;&nbsp; Aaron has a strong passion on technology and
-        computers. Outside of programmimg, Aaron has a hobby of collecting and
-        engage with technology. He likes to tinker with his Arch Linux Operating
-        System and enjoys collecting custom keyboards.
+        With a strong passion for technology, computers and efficiency, I am
+        delighted to tinker with multiple <strong>Linux</strong> distributions
+        and customizing <strong>VIM</strong>. Outside of programming, I have
+        hobbies such as <strong>playing music</strong>,
+        <strong>video games</strong>, and
+        <strong>customizing mechanical/ergonomic keyboards</strong>.
       </p>
     </section>
     <!-- journey section -->
@@ -58,23 +56,39 @@
       </h2>
       <br />
       <div class="flex flex-col gap-2">
-        <!-- year 2017 -->
         <p class="lg:text-lg text-sm text-justify">
-          <strong>2017:</strong>
-          &nbsp; Started journey on programming as a hobby
+          <strong>2018:</strong>
+          &nbsp; Joined FIRST Robotics Competition
         </p>
-        <!-- year 2020 -->
         <p class="lg:text-lg text-sm text-justify">
-          <strong>2020:</strong>
-          &nbsp; Enrolled for diploma of ICT with specalism in software
-          engineering
+          <strong>2019:</strong>
+          &nbsp; Started studying Software Engineering at Sonora Technological
+          Institute
         </p>
-        <!-- year 2022  -->
         <p class="lg:text-lg text-sm text-justify">
           <strong>2022:</strong>
-          &nbsp; Started journey on web development
+          &nbsp; Started working at Ludens Productions
         </p>
       </div>
+    </section>
+    <section class="">
+      <h2
+        class="lg:text-2xl text-lg font-bold underline underline-offset-8 decoration-2"
+      >
+        Contact
+      </h2>
+      <br />
+      <p class="lg:text-lg text-sm text-justify leading-6">
+        Do you wish to connect and discuss one of my projects, explore potential
+        opportunities, or simply engage in a casual conversation?
+        <br />
+        You can email me at: <strong>angel.ciulog7@gmail.com</strong>
+        <br />
+        You can also find my profile on
+        <strong class="underline"
+          ><a href="https://github.com/MiguelCiulog">Github</a></strong
+        >.
+      </p>
     </section>
   </div>
 </template>
@@ -87,51 +101,43 @@ import { ref } from 'vue';
 export default {
 	data() {
 		return {
-			display: false,
+			display: false
 		};
 	},
 	setup() {
-		const landingIntro = ref('');
+		const textScroll = ref('');
 
-		if (landingIntro.value !== '') {
-			landingIntro.value === '';
+		if (textScroll.value !== '') {
+			textScroll.value === '';
 		}
 	},
 	mounted() {
-		new TypeIt('#landing_intro', {
+		new TypeIt('#text_scroll', {
 			speed: 50,
 			waitUntilVisible: true,
-			startDelay: 2000,
+			startDelay: 100,
 			startDelete: true,
 			// remove cursor when finished
 			afterComplete: function (instance) {
 				instance.destroy();
-			},
+			}
 		})
-			.type('Hello! I am a full stack web developer based in Malaysia.')
+			.type('Hello! I am a backend developer based in Mexico.')
 			.go();
-	},
+	}
 };
 </script>
 
 <style>
-.selector {
-  background-color: var(--bg-sel);
-}
-
-.copyright {
-  animation: fadeInLeft; /* referring directly to the animation's @keyframe declaration */
-  animation-duration: 1s; /* don't forget to set a duration! */
-  animation-delay: 3s;
-}
-
-/* @keyframes copyright {
-  0% {
-    opacity: 0;
+  .selector {
+    background-color: var(--bg-sel);
   }
-  100% {
-    opacity: 1;
-    visibility: visible;
+
+  .copyright {
+    animation: fadeInLeft;
+    /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 1s;
+    /* don't forget to set a duration! */
+    animation-delay: 1s;
   }
-} */
 </style>
