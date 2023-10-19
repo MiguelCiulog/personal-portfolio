@@ -1,11 +1,5 @@
 <template>
   <div ref="baseModel">
-    <!-- <div v-if="!stylesheetsLoaded"> -->
-    <div v-show="!isThemeLoaded" class="h-64">
-      <!-- Loading screen or preloader -->
-      <MainLoading @apply-theme="applyTheme" />
-    </div>
-    <!-- </div> -->
     <div
       class="xl:px-[20rem] lg:px-[14rem] md:px-[10rem] sm:px-[7rem] px-[4rem]"
       :class="
@@ -31,6 +25,10 @@
         class="h-48 w-48"
         v-else-if="isThemeLoaded && currentRouteName === 'ngl'"
       />
+
+      <div v-show="!isThemeLoaded" class="h-64">
+        <MainLoading @apply-theme="applyTheme" />
+      </div>
 
       <div
         class="pb-20 z-10 -mt-[5rem] -m-[3rem] px-5 sm:px-0 content-container"
@@ -80,15 +78,24 @@ const isThemeLoaded = ref(false);
 const isThemeSelected = ref(false);
 const baseContainer = ref('');
 
+const getUserThemePreference = () => {
+	// Check if the user prefers dark mode
+	if (
+		window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+	) {
+		return 'dark';
+	} else {
+		return 'light';
+	}
+};
+
 const setDefaultTheme = () => {
 	// stop applying if the placeholder theme is removed
 	if (body.className !== 'placeholder-theme') return;
 
 	// set defualt preference to light
-	const userPreferTheme = localStorage.getItem('themePreference');
-	if (userPreferTheme == null) {
-		userPreferTheme = 'light';
-	}
+	let userPreferTheme = getUserThemePreference();
 
 	//get available themes for user preference
 	const availableThemes = themesData.filter((item) => {

@@ -24,13 +24,13 @@ export default {
 			anime({
 				targets: '.loading-view',
 				easing: 'easeInOutQuad',
-				duration: 650,
+				duration: 700,
 				width: '100%'
 			});
 
 			setTimeout(() => {
 				this.setApplyTheme();
-			}, 650);
+			}, 700);
 		};
 		animation();
 	}
