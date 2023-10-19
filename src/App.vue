@@ -1,5 +1,11 @@
 <template>
   <div ref="baseModel">
+    <!-- <div v-if="!stylesheetsLoaded"> -->
+    <div v-show="!isThemeLoaded" class="h-64">
+      <!-- Loading screen or preloader -->
+      <MainLoading @apply-theme="applyTheme" />
+    </div>
+    <!-- </div> -->
     <div
       class="xl:px-[20rem] lg:px-[14rem] md:px-[10rem] sm:px-[7rem] px-[4rem]"
       :class="
@@ -9,7 +15,10 @@
       "
       ref="baseContainer"
     >
-      <div class="flex flex-col items-center justify-center pt-8">
+      <div
+        v-if="isThemeLoaded"
+        class="flex flex-col items-center justify-center pt-8"
+      >
         <h1 class="text-4xl font-bold">Miguel Ciulog</h1>
         <h3 class="text-lg">Backend Engineer</h3>
       </div>
@@ -22,10 +31,6 @@
         class="h-48 w-48"
         v-else-if="isThemeLoaded && currentRouteName === 'ngl'"
       />
-
-      <div v-show="!isThemeLoaded" class="h-64">
-        <MainLoading @apply-theme="applyTheme" />
-      </div>
 
       <div
         class="pb-20 z-10 -mt-[5rem] -m-[3rem] px-5 sm:px-0 content-container"
@@ -78,19 +83,24 @@ const baseContainer = ref('');
 const setDefaultTheme = () => {
 	// stop applying if the placeholder theme is removed
 	if (body.className !== 'placeholder-theme') return;
+
+	// set defualt preference to light
+	const userPreferTheme = localStorage.getItem('themePreference');
+	if (userPreferTheme == null) {
+		userPreferTheme = 'light';
+	}
+
+	//get available themes for user preference
+	const availableThemes = themesData.filter((item) => {
+		return item.themeType === userPreferTheme;
+	});
+
 	// get a random theme
 	const randomTheme =
-      themesData[Math.floor(Math.random() * themesData.length)];
-	// based on the user preference
-	const userPreferTheme = localStorage.getItem('themePreference');
+      availableThemes[Math.floor(Math.random() * availableThemes.length)];
 
-	if (randomTheme.themeType === userPreferTheme || userPreferTheme === null) {
-		isThemeSelected.value = true;
-		setTheme.value = randomTheme.ColorScheme;
-	} else {
-		// recurse
-		setDefaultTheme();
-	}
+	isThemeSelected.value = true;
+	setTheme.value = randomTheme.ColorScheme;
 };
 
 const applyTheme = () => {
@@ -105,7 +115,7 @@ setDefaultTheme();
 
 onMounted(() => {
 	setTimeout(() => {
-		classList = baseContainer.value;
+		baseContainer.value;
 	}, 2500);
 });
 </script>
@@ -130,7 +140,7 @@ export default {
 		setTimeout(() => {
 			this.setDefaultPadding();
 			this.setDefaultWidth();
-			body = document.body;
+			document.body;
 		}, 1000);
 
 		// the animation disables the fix heaader bar actually

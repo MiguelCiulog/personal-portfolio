@@ -122,7 +122,7 @@ export default {
 				instance.destroy();
 			}
 		})
-			.type('Hello! I am a backend developer based in Mexico.')
+			.type('Hello! I am Miguel, a backend developer based in Mexico.')
 			.go();
 	}
 };
