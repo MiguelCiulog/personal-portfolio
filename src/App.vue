@@ -115,7 +115,7 @@ setDefaultTheme();
 
 onMounted(() => {
 	setTimeout(() => {
-		baseContainer.value;
+		const { classList } = baseContainer.value;
 	}, 2500);
 });
 </script>
@@ -140,7 +140,7 @@ export default {
 		setTimeout(() => {
 			this.setDefaultPadding();
 			this.setDefaultWidth();
-			document.body;
+			const body = document.body;
 		}, 1000);
 
 		// the animation disables the fix heaader bar actually
